@@ -1,0 +1,27 @@
+1248. Count Number of Nice Subarrays
+Medium
+
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        unordered_map<int,int> m;
+        int oddCount=0;
+        int count=0;
+
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]%2==1)
+                oddCount++;
+            if(oddCount==k) 
+                count++;
+            
+            if(m.find(oddCount-k)!=m.end())
+                count+=m[oddCount-k];
+                
+            if(m.find(oddCount)!=m.end())
+                m[oddCount]++;
+            else
+                m[oddCount]=1;
+        }
+        return count;
+    }
+};

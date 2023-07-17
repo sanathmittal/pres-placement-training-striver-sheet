@@ -1,0 +1,37 @@
+2024. Maximize the Confusion of an Exam
+Medium
+
+class Solution {
+public:
+    int maxConsecutiveAnswers(string answerKey, int k) {
+        int ans=0;
+        int i=0,l=0;
+        int cnt=0;
+        int len = answerKey.length();
+        while(i<len){
+            if(answerKey[i]=='T')
+                cnt++;
+            while(cnt>k){
+                if(answerKey[l]=='T')
+                    cnt--;
+                l++;
+            }
+            ans = max(ans,i-l+1);
+            i++;
+        }
+        cnt=0;
+        i=0,l=0;
+        while(i<len){
+            if(answerKey[i]=='F')
+                cnt++;
+            while(cnt>k){
+                if(answerKey[l]=='F')
+                    cnt--;
+                l++;
+            }
+            ans = max(ans,i-l+1);
+            i++;
+        }
+        return ans;
+    }
+};

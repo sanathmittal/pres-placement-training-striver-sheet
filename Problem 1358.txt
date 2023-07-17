@@ -1,0 +1,21 @@
+1358. Number of Substrings Containing All Three Characters
+Medium
+
+
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int char_count[] = new int[3];
+        int start=0,end=0;
+        int count=0;
+
+        while(end<s.length()){
+            char_count[s.charAt(end)-'a']++;
+            while(char_count[0]>0 && char_count[1]>0 && char_count[2]>0){
+                count+=s.length()-end;
+                char_count[s.charAt(start++)-'a']--;
+            }
+            end++;
+        }
+        return count;
+    }
+}
